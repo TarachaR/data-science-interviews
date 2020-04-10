@@ -289,19 +289,25 @@ Answer here
 
 **What is the ROC curve? When to use it? ‍⭐️**
 
-The diagrammatic representation that shows the contrast between true positive rate vs true negative rate. It is used when we need to predict the probability of the binary outcome.
+ROC stands for *Receiver Operating Characteristics*. The diagrammatic representation that shows the contrast between true positive rate vs true negative rate. It is used when we need to predict the probability of the binary outcome.
 
 <br/>
 
 **What is AUC (AU ROC)? When to use it? ‍⭐️**
 
-Answer here
+AUC stands for *Area Under the ROC Curve*. ROC is a probability curve and AUC represents degree or measure of separability. It's used when we need to value how much model is capable of distinguishing between classes.  The value is between 0 and 1, the higher the better.
 
 <br/>
 
 **How to interpret the AU ROC score? ‍⭐️**
 
-Answer here
+AUC score is the value of *Area Under the ROC Curve*. 
+
+If we assume ROC curve consists of dots, $\{(x_1, y_1), (x_2, y_2), \cdots, (x_m,y_m)\}$, then
+$$
+AUC = \frac{1}{2} \sum_{i=1}^{m-1}(x_{i+1}-x_i)\cdot (y_i+y_{i+1})
+$$
+An excellent model has AUC near to the 1 which means it has good measure of separability. A poor model has AUC near to the 0 which means it has worst measure of separability. When AUC score is 0.5, it means model has no class separation capacity whatsoever. 
 
 <br/>
 
@@ -477,7 +483,13 @@ Answer here
 
 **What are the decision trees? 👶**
 
+This is a type of supervised learning algorithm that is mostly used for classification problems. Surprisingly, it works for both categorical and continuous dependent variables. 
+
+In this algorithm, we split the population into two or more homogeneous sets. This is done based on most significant attributes/ independent variables to make as distinct groups as possible.
+
 A decision tree is a flowchart-like tree structure, where each internal node (non-leaf node) denotes a test on an attribute, each branch represents an outcome of the test, and each leaf node (or terminal node) holds a value for the target variable.
+
+Various techniques : like Gini, Information Gain, Chi-square, entropy.
 
 <br/>
 
@@ -523,13 +535,15 @@ Often, we want to find a split such that it minimizes the sum of the node impuri
 
 **What is random forest? 👶**
 
-Answer here
+Random Forest is a machine learning method for regression and classification which is composed of many decision trees. RF belongs to a larger class of ML algorithms called ensemble methods (in other words, it involves the combination of several models to solve a single prediction problem).
 
 <br/>
 
 **Why do we need randomization in random forest? ‍⭐️**
 
-Answer here
+Random forest in an extention of the **bagging** algorithm which takes *random data samples from the training dataset* (with replacement), trains several models and averages predictions. In addition to that, each time a split in a tree is considered, random forest takes a *random sample of m features from full set of n features* (with replacement) and uses this subset of features as candidates for the split (for example, `m = sqrt(n)`).
+
+Training decision trees on random data samples from the training dataset *reduces variance*. Sampling features for each split in a decision tree *decorrelates trees*.
 
 <br/>
 
@@ -676,7 +690,7 @@ The output of the sigmoid function for large positive or negative numbers is alm
 
 **What is ReLU? How is it better than sigmoid or tanh? ‍⭐️**
 
-Answer here
+ReLU is an abbreviation for Rectified Linear Unit. It is an activation function which has the value 0 for all negative values and the value f(x) = x for all positive values. The ReLU has a simple activation function which makes it fast to compute and while the sigmoid and tanh activation functions saturate at higher values, the ReLU has a potentially infinite activation, which addresses the problem of vanishing gradients. 
 
 <br/>
 
@@ -751,7 +765,7 @@ Answer here
 
 **When would you use Adam and when SGD? ‍⭐️**
 
-Answer here
+Adam tends to converge faster, while SGD often converges to more optimal solutions.
 
 <br/>
 
@@ -790,25 +804,31 @@ Answer here
 
 **What’s a convolutional layer? ‍⭐️**
 
-Answer here
+The idea of the convolutional layer is the assumption that the information needed for making a decision often is spatially close and thus, it only takes the weighted sum over nearby inputs. It also assumes that the networks’ kernels can be reused for all nodes, hence the number of weights can be drastically reduced. To counteract only one feature being learnt per layer, multiple kernels are applied to the input which creates parallel channels in the output. Consecutive layers can also be stacked to allow the network to find more high-level features.
 
 <br/>
 
 **Why do we actually need convolutions? Can’t we use fully-connected layers for that? ‍⭐️**
 
-Answer here
+A fully-connected layer needs one weight per inter-layer connection, which means the number of weights which needs to be computed quickly balloons as the number of layers and nodes per layer is increased. 
 
 <br/>
 
 **What’s pooling in CNN? Why do we need it? ‍⭐️**
 
-Answer here
+Pooling is a technique to downsample the feature map. It allows layers which receive relatively undistorted versions of the input to learn low level features such as lines, while layers deeper in the model can learn more abstract features such as texture.
 
 <br/>
 
 **How does max pooling work? Are there other pooling techniques? ‍⭐️**
 
-Answer here
+Max pooling is a technique where the maximum value of a receptive field is passed on in the next feature map. The most commonly used receptive field is 2 x 2 with a stride of 2, which means the feature map is downsampled from N x N to N/2 x N/2. Receptive fields larger than 3 x 3 are rarely employed as too much information is lost. 
+
+Other pooling techniques include:
+
+* Average pooling, the output is the average value of the receptive field.
+* Min pooling, the output is the minimum value of the receptive field.
+* Global pooling, where the receptive field is set to be equal to the input size, this means the output is equal to a scalar and can be used to reduce the dimensionality of the feature map. 
 
 <br/>
 
